@@ -5,4 +5,4 @@ bundler_args: "--without development"
 
 addons:
   code_climate:
-    repo_token: tHNf76qVx8KrpskFxsMh
+    repo_token: 4d9c4f15ab5a31a9cfb77113dbd1b2bba8a94d3736d4bfa59a048ce3ebff7a33
