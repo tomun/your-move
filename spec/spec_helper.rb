@@ -13,7 +13,7 @@ ActiveRecord::Migration.maintain_test_schema!
 OmniAuth.config.test_mode = true
 OmniAuth.config.logger = Rails.logger
 
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(allow_localhost: true, :allow => /codeclimate.com/)
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
