@@ -1,0 +1,36 @@
+figcaption {
+  font-size: 0.9em;
+  font-style: italic;
+  text-align: left;
+}
+
+figure {
+  margin: 0 auto 1.5em auto;
+}
+
+footer {
+  clear: both;
+}
+
+#content {
+  min-height: 10em;
+  float: left;
+  width: 718px; /* #page.width - #sidebar.width - #sidebar.border-left-size - (2 * #sidebar.padding) - (2 * #content.padding) */
+}
+
+#page {
+	width: 960px;
+	margin: 40px auto;
+}
+
+#sidebar {
+  float:right;
+  width: 200px;
+  padding: 10px;
+  border-left: solid 2px #007F00;
+  text-align: center;
+}
+
+#plea {
+  margin-bottom: 2em;
+}

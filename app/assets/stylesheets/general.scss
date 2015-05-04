@@ -1,0 +1,169 @@
+footer, header, nav {
+  padding: 10px;
+}
+
+footer, header, nav, section {
+  margin: 0;
+}
+
+.w10 {
+  width: 10em;
+}
+
+.w15 {
+  width: 15em;
+}
+
+.wState {
+  width: 4em;
+}
+
+.wZip {
+  width: 7em;
+}
+
+a.as-link {
+  font-size: 1em;
+  color: #000000;
+  display: inline-block;
+  border: solid 1px #007F00;
+  margin: 0.25em;
+  padding: 3px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #EEEEEE;
+}
+
+a.as-link:hover {
+  text-decoration: none;
+}
+
+body {
+  background-image: image-url('Dark-forest-tile.jpg')
+}
+
+footer {
+  border-top: solid 2px #007F00;
+ }
+  
+header {
+ }
+
+nav {
+  border-top: solid 2px #007F00;
+  border-bottom: solid 2px #007F00;
+  background-color: #009933;
+  padding:10px;
+  margin:0;
+}
+
+nav:before,
+nav:after {
+  content:"";
+  display: table;
+}
+
+nav:after {
+  clear:both;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+nav ul li {
+  float: left;
+}
+
+nav ul li a {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 1.5em; /* if font-size is changed, reposition nav #login-content top to font-size + 1em */
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0 0 1em 0;
+}
+
+section {
+    margin:0;
+}
+
+table.data_input {
+  border-collapse: collapse;
+}
+
+table.data_input th {
+  vertical-align: top;
+  text-align: left;
+  font-size: 0.9em;
+  padding: 4px 0.25em 0 0;
+  font-weight: normal;
+}
+
+.align-right {
+  float: right;
+}
+
+.align-left {
+  float: left;
+}
+
+#access-content {
+  display: none;
+  position: absolute;
+  top: 2.5em;
+  right: 0.5em;
+  width: 185px;
+  z-index: 999;
+  
+  border: solid 1px #007F00;
+  background-color: #EEFFEE;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+#access-form {
+  padding:0;
+}
+
+#access-form input {
+  border: solid 1px #007F00;
+  margin: 0.25em;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+#access-form input[type=email], 
+#access-form input[type=password] {
+  width: 150px;
+}
+
+#access-form input[type=submit] {
+
+}
+
+#access-actions {
+  border: none;
+}
+
+#access-inputs {
+  border: none;
+}
+
+#content {
+  padding:10px;
+}
+
+#page {
+	background-color: #FFFFFF;
+  border: solid 1px #000000;
+}

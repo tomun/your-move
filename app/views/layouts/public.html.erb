@@ -1,0 +1,48 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Save the Endangered Pacific Northwest Tree Octopus</title>
+  <%= stylesheet_link_tag    'general', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'public', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+  <section id="page">
+    <header>
+      
+    </header>
+    <nav>
+      <ul class="align-left">
+        <li><a href="#">Home</a></li>
+        <li><a href="images.html">About Us</a></li>
+      </ul>
+      <ul class="align-right">
+        <li id="access">
+          <a id="access-trigger" href="#">Login</a>
+          <div id="access-content">
+            <form id="access-form" method="link" action="index.html">
+              <fieldset id="access-inputs">
+                <input id="uid" type="email" name="Email" placeholder="Your email address" required>
+                <input id="pwd" type="password" name="Password" placeholder="Password" required>
+              </fieldset>
+              <fieldset id="access-actions">
+                <!-- <input type="submit" id="submit" value="Log in"> -->
+                <input type="button" value="Log in" onclick="window.location.href='/rails-layout/admin.html'" />
+              </fieldset>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <section id="content">
+ <%= yield %>
+    </section>
+    <footer>
+      Final class project, Advanced Topics
+    </footer>
+  </section>
+</body>
+</html>
+
