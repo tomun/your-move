@@ -39,7 +39,6 @@ a.as-link:hover {
 }
 
 body {
-  background-image: image-url('Dark-forest-tile.jpg')
 }
 
 footer {
@@ -142,8 +141,8 @@ table.data_input th {
   border-radius: 5px;
 }
 
-#access-form input[type=email], 
-#access-form input[type=password] {
+#access-content input[type=email], 
+#access-content input[type=password] {
   width: 150px;
 }
 
