@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       puts "Log in"
     elsif params[:commit] == "Register"
       puts "Register"
+      redirect_to new_user_path
     else
       puts "Uh, oh!"
     end

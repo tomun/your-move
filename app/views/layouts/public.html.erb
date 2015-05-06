@@ -19,6 +19,7 @@
         <li><a href="images.html">About Us</a></li>
       </ul>
       <ul class="align-right">
+        <li><a href="<%= new_user_path %>">Register</a></li>
         <li id="access">
           <a id="access-trigger" href="#">Login</a>
           <div id="access-content">
@@ -29,7 +30,6 @@
               </fieldset>
               <fieldset id="access-actions">
                 <%= submit_tag "Log in" %>
-                <%= submit_tag "Register" %>
               </fieldset>
             <% end %>
           </div>
