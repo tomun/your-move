@@ -6,22 +6,6 @@ footer, header, nav, section {
   margin: 0;
 }
 
-.w10 {
-  width: 10em;
-}
-
-.w15 {
-  width: 15em;
-}
-
-.wState {
-  width: 4em;
-}
-
-.wZip {
-  width: 7em;
-}
-
 a.as-link {
   font-size: 1em;
   color: #000000;
@@ -97,24 +81,35 @@ section {
     margin:0;
 }
 
-table.data_input {
-  border-collapse: collapse;
-}
-
-table.data_input th {
-  vertical-align: top;
-  text-align: left;
-  font-size: 0.9em;
-  padding: 4px 0.25em 0 0;
-  font-weight: normal;
-}
-
 .align-right {
   float: right;
 }
 
 .align-left {
   float: left;
+}
+
+.form-group {
+  padding-bottom: 1em;
+}
+
+.form-group > label {
+  display:block;
+}
+
+.form-group > input {
+  display:block;
+  border: solid 1px #004400;
+}
+
+.form-group > input:hover {
+  border: solid 1px #00CC00;
+}
+
+.form-group > input[type='password'],
+.form-group > input[type='text']  {
+  padding: 4px;
+  border-radius: 5px;
 }
 
 #access-content {
@@ -144,10 +139,6 @@ table.data_input th {
 #access-content input[type=email], 
 #access-content input[type=password] {
   width: 150px;
-}
-
-#access-form input[type=submit] {
-
 }
 
 #access-actions {
