@@ -5,6 +5,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :email
       t.string :password
       t.string :password_digest
+      t.string :api_key
 
       t.timestamps null: false
     end

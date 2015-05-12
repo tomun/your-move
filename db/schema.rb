@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150504004848) do
     t.string   "email"
     t.string   "password"
     t.string   "password_digest"
+    t.string   "api_key"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

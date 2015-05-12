@@ -15,13 +15,18 @@
     </header>
     <nav>
       <ul class="align-left">
-        <li><a href="/">Home</a></li>
+        <li><a href="<%= root_path %>">Home</a></li>
       </ul>
       <ul class="align-right">
-        <li><a href="#">Logout</a></li>
+        <li><a href="<%= logout_path %>">Logout</a></li>
       </ul>
     </nav>
     <section id="content">
+      <% flash.each do |name, msg| %>
+        <div class="alert-<%= name == "notice" ? "success" : "failure" %>">
+          <%= msg %>
+        </div>
+      <% end %>
  <%= yield %>
     </section>
     <footer>

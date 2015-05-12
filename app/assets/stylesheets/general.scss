@@ -81,6 +81,19 @@ section {
     margin:0;
 }
 
+
+.alert-failure {
+  color:#770000;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.alert-success {
+  color:#007700;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
 .align-right {
   float: right;
 }
@@ -136,7 +149,7 @@ section {
   border-radius: 5px;
 }
 
-#access-content input[type=email], 
+#access-content input[type=text], 
 #access-content input[type=password] {
   width: 150px;
 }

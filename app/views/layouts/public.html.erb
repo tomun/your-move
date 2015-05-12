@@ -22,10 +22,10 @@
         <li id="access">
           <a id="access-trigger" href="#">Login</a>
           <div id="access-content">
-            <%= form_tag(method: "post") do %>
+            <%= form_tag(url_for(controller: "sessions", action: "create"), method: "post") do %>
               <fieldset id="access-inputs">
-                <%= email_field_tag :uid, nil, placeholder: "Your email address", :required=>true %> 
-                <%= password_field_tag :pwd, nil, placeholder: "Password", :required=>true %>
+                <%= text_field_tag :handle, nil, placeholder: "Name", :required=>true %> 
+                <%= password_field_tag :password, nil, placeholder: "Password", :required=>true %>
               </fieldset>
               <fieldset id="access-actions">
                 <%= submit_tag "Log in" %>
@@ -36,6 +36,11 @@
       </ul>
     </nav>
     <section id="content">
+      <% flash.each do |name, msg| %>
+        <div class="alert-<%= name == "notice" ? "success" : "failure" %>">
+          <%= msg %>
+        </div>
+      <% end %>
  <%= yield %>
     </section>
     <footer>
