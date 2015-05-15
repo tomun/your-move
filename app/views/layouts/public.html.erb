@@ -24,8 +24,8 @@
           <div id="access-content">
             <%= form_tag(url_for(controller: "sessions", action: "create"), method: "post") do %>
               <fieldset id="access-inputs">
-                <%= text_field_tag :handle, nil, placeholder: "Name", :required=>true %> 
-                <%= password_field_tag :password, nil, placeholder: "Password", :required=>true %>
+                <%= text_field_tag :login_handle, nil, placeholder: "Name", :required=>true %> 
+                <%= password_field_tag :login_password, nil, placeholder: "Password", :required=>true %>
               </fieldset>
               <fieldset id="access-actions">
                 <%= submit_tag "Log in" %>

@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    player = Player.where(handle: params[:handle]).first
+    player = Player.where(handle: params[:login_handle]).first
 
-    if player && params[:password].present? && player.authenticate(params[:password])
+    if player && params[:login_password].present? && player.authenticate(params[:login_password])
       session[:player_id] = player.id
       redirect_to root_path, notice: "You have been logged in."
     else
