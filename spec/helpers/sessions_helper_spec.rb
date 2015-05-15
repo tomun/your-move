@@ -1,15 +1,28 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the SessionsHelper. For example:
-#
-# describe SessionsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe SessionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:player) { create(:player) }
+
+  describe "#current_player" do
+    it "stores a player if signed_in?" do
+      session[:player_id] = player.id
+      expect(current_player).to eq player
+    end
+
+    it "returns nil if not signed_in?" do
+      expect(current_player).to be_nil
+    end
+  end
+
+  describe "signed_in?" do
+    it "returns true if signed in" do
+      session[:player_id] = player.id
+      expect(signed_in?).to be_truthy
+    end
+
+    it "returns false if not signed in" do
+      expect(signed_in?).to be_falsey
+    end
+  end
+
 end
