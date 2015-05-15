@@ -22,7 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-puts "Destroyed!"
     session[:player_id] = nil
     redirect_to root_url, notice: "You have been logged out."
  end
