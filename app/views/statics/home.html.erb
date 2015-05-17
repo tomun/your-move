@@ -1,1 +1,5 @@
-<p>Test</p>
+<% if signed_in? %>
+  <h1>Welcome <%= current_player.handle %></h1>
+<% else %>
+  <h1>Yo, Login or Register to start playing</h1>
+<% end %>
