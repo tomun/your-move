@@ -8,6 +8,10 @@ module SessionsHelper
     !current_player.nil?
   end
 
+  def game_types
+    @game_types ||= GameType.game_types
+  end
+
   # def authentication_required
   #   unless signed_in?
   #     store_location
