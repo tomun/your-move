@@ -25,4 +25,13 @@ RSpec.describe SessionsHelper, type: :helper do
     end
   end
 
+  describe "game_types" do
+    it "returns the list of available game types" do
+      game_names = []
+      game_types.each { |game_type| game_names << game_type.game_type_name }
+
+      expect(game_names).to include "TicTacToe"
+    end
+  end
+
 end

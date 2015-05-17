@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504004848) do
+ActiveRecord::Schema.define(version: 20150517205738) do
 
   create_table "game_types", force: :cascade do |t|
     t.string   "game_type_name"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150504004848) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.integer  "initiating_player"
+    t.integer  "player_id"
     t.integer  "recipient_player"
     t.integer  "game_type_id"
     t.boolean  "was_random_match"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20150504004848) do
     t.string   "api_key"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
