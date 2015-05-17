@@ -8,15 +8,15 @@ module SessionsHelper
     !current_player.nil?
   end
 
-  def authentication_required
-    unless signed_in?
-      store_location
-      redirect_to login_url, notice: "Please sign in"
-    end
-  end
+  # def authentication_required
+  #   unless signed_in?
+  #     store_location
+  #     redirect_to login_url, notice: "Please sign in"
+  #   end
+  # end
 
-  def store_location
-    session[:return_to] = request.url if request.get?
-  end
+  # def store_location
+  #   session[:return_to] = request.url if request.get?
+  # end
 
 end
