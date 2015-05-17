@@ -16,10 +16,10 @@ class SessionsController < ApplicationController
     end
   end    
 
-  def failure
-    flash[:alert] = "Authentication Failed"
-    redirect_to root_url
-  end
+  # def failure
+  #   flash[:alert] = "Authentication Failed"
+  #   redirect_to root_url
+  # end
 
   def destroy
     session[:player_id] = nil
