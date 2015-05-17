@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   include SessionsHelper
 
-  def new
-  end
+  # def new
+  # end
 
   def create
     player = Player.where(handle: params[:login_handle]).first
