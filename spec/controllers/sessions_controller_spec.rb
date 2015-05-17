@@ -13,10 +13,21 @@ RSpec.describe SessionsController, type: :controller do
   #   end
   # end
 
-  describe "#create" do
-    it "adds a Player session" do
-      post :create, login_handle: player.handle, login_password: player.password
-      expect(session[:player_id]).to eq player.id
+  context "with valid credentials" do
+    describe "#create" do
+      it "adds a Player session" do
+        post :create, login_handle: player.handle, login_password: player.password
+        expect(session[:player_id]).to eq player.id
+      end
+    end
+  end
+
+  context "with invalid credentials" do
+    describe "#create" do
+      it "flashes an error message" do
+        post :create, login_handle: player.handle, login_password: "bogus password"
+        expect(flash[:error]).to include("incorrect")
+      end
     end
   end
 
