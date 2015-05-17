@@ -1,3 +1,24 @@
-<p>Would you like to play a game?</p>
+<h3>Would you like to play a game?</h3>
 
+<%= form_for @invitation do |f| %>
+  <% if @invitation.errors.any? %>
+    <div class="error_messages">
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :game %>
+    <%= fields_for :game_type do |g| %>
+      <%= select("game", "game_type_id", GameType.options_all) %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :opponent %>
+    <%= f.text_field :recipient_player, placeholder: 'Name your opponent' %>
+  </div>
 
+<% end %>
