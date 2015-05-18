@@ -7,18 +7,26 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    if valid_opponent?(params[:invitation][:recipient_player])
+    @invite = prepare_invite(params[:invitation][:recipient_player], params[:game_type_id])
 
-    else
-flash[:error] = "Unknown player handle"
+    if @invite.nil? 
+      flash[:error] = "Unknown player handle"
       redirect_to new_invitation_path
+    else
+      if @invite.save
+        puts "Success!"
+      else
+        puts "Failure!"
+      end
+
     end
+
   end
 
 private
   
-  def invitations_params
-    params.require(:invitations).permit(:game_type_id, :invitation_recipient_player)
+  def invitation_params
+    params.require(:invitation).permit(:game_type_id, :recipient_player)
   end
 
 end
