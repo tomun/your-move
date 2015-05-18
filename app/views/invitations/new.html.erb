@@ -13,12 +13,14 @@
   <div class="form-group">
     <%= f.label :game %>
     <%= fields_for :game_type do |g| %>
-      <%= select("game", "game_type_id", GameType.options_all) %>
+      <%= select_tag(:game_type_id, options_for_select(GameType.options_all)) %>
     <% end %>
   </div>
   <div class="form-group">
     <%= f.label :opponent %>
     <%= f.text_field :recipient_player, placeholder: 'Name your opponent' %>
   </div>
-
+  <div class="actions">
+    <%= f.submit "Send invitation" %>
+  </div>
 <% end %>
