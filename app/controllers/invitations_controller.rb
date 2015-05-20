@@ -1,30 +1,32 @@
-class InvitationssController < ApplicationController
+class InvitationsController < ApplicationController
+  include InvitationHelper
 
-  # GET /invitations/new
   def new
     @invitation = Invitation.new
+    puts "New invitation"
   end
 
-  # POST /invitations
   def create
-    @player = Player.new(player_params)
-    if @player.save
-      session[:player_id] = @player.id
-      #UserMailer.welcome_email(@player).deliver_later(wait: 1.minute)
-      redirect_to root_url, notice: "You have signed up"
+    @invite = prepare_invite(params[:invitation][:recipient_player], params[:game_type_id])
+
+    if @invite.nil? 
+      flash[:error] = "Unknown player handle"
+      redirect_to new_invitation_path
     else
-      render "new"
+      if @invite.save
+        puts "Success!"
+      else
+        puts "Failure!"
+      end
+
     end
+
   end
 
-  # DELETE /invitations/1
-  def destroy
+private
+  
+  def invitation_params
+    params.require(:invitation).permit(:game_type_id, :recipient_player)
   end
-
-  private
-
-    def invitation_params
-      params.require(:invitation).permit(:handle, :email, :password, :password_confirmation)
-    end
 
 end
