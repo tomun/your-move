@@ -1,3 +1,7 @@
+$border-color: #004400;
+$hover-color: #00CC00;
+$solid-color: #009933;
+
 footer, header, nav {
   padding: 10px;
 }
@@ -10,7 +14,7 @@ a.as-link {
   font-size: 1em;
   color: #000000;
   display: inline-block;
-  border: solid 1px #007F00;
+  border: solid 1px $border-color;
   margin: 0.25em;
   padding: 3px;
   border-radius: 5px;
@@ -26,16 +30,16 @@ body {
 }
 
 footer {
-  border-top: solid 2px #007F00;
+  border-top: solid 2px $border-color;
  }
   
 header {
  }
 
 nav {
-  border-top: solid 2px #007F00;
-  border-bottom: solid 2px #007F00;
-  background-color: #009933;
+  border-top: solid 2px $border-color;
+  border-bottom: solid 2px $border-color;
+  background-color: $solid-color;
   padding:10px;
   margin:0;
 }
@@ -112,17 +116,29 @@ section {
 
 .form-group > input {
   display:block;
-  border: solid 1px #004400;
+  border: solid 1px $border-color;
 }
 
 .form-group > input:hover {
-  border: solid 1px #00CC00;
+  border: solid 1px $hover-color;
 }
 
 .form-group > input[type='password'],
 .form-group > input[type='text']  {
   padding: 4px;
   border-radius: 5px;
+}
+
+.actions > input[type='submit'] {
+  border: solid 1px $border-color;
+  border-radius: 5px;
+  padding:3px;
+  background-color: $solid-color;
+  color: #FFFFFF;
+}
+
+.actions > input[type='submit']:hover {
+   border: solid 1px $hover-color;
 }
 
 #access-content {
@@ -133,7 +149,7 @@ section {
   width: 185px;
   z-index: 999;
   
-  border: solid 1px #007F00;
+  border: solid 1px #border-color;
   background-color: #EEFFEE;
   box-shadow: 5px 5px 5px #888888;
 }
@@ -143,7 +159,7 @@ section {
 }
 
 #access-form input {
-  border: solid 1px #007F00;
+  border: solid 1px $border-color;
   margin: 0.25em;
   padding: 3px;
   border-radius: 5px;
@@ -168,5 +184,5 @@ section {
 
 #page {
 	background-color: #FFFFFF;
-  border: solid 1px #000000;
+  border: solid 1px $border-color;
 }
