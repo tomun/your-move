@@ -5,6 +5,18 @@ class GamesController < ApplicationController
   def show
   end
 
+  # GET /games/1/move
+  def move
+    @game.move params
+
+    @game.game_data = @game.game_obj.to_json
+
+    @game.save
+
+    #redirect_to game_path(self)
+    render "show"
+  end
+
 private
   # Use callbacks to share common setup or constraints between actions.
   def set_game

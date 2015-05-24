@@ -33,8 +33,11 @@ class GameType < ActiveRecord::Base
     @@game_types
   end
 
+  def klass
+    game_type_name.constantize
+  end
+
   def create
-    klass = game_type_name.constantize
     klass.new 
   end
 
