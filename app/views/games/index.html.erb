@@ -1,0 +1,23 @@
+<h1>Active Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game id</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= link_to game.id, game %></td>
+        <td><%= link_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Game', new_game_path %>

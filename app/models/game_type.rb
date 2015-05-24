@@ -1,15 +1,14 @@
 require_relative "../games/tic_tac_toe"
 
 class GameType < ActiveRecord::Base
+  has_many :games
+
   @@game_types = []
 
   def self.game_types
     if @@game_types.count == 0
       self.register_games
     else
-      GameType.all.each do |game_type| 
-        @@game_types << game_type
-      end
       @@game_types
     end
   end
@@ -34,11 +33,15 @@ class GameType < ActiveRecord::Base
     @@game_types
   end
 
+  def klass
+    game_type_name.constantize
+  end
+
   def create
-    klass = game_type_name.constantize
     klass.new 
   end
 
+  # used by invitations/new.html.erb for select_tag's options_for_select parameter
   def self.options_all
     @gms = Array.new
 
@@ -47,7 +50,7 @@ class GameType < ActiveRecord::Base
     src << ""
     @gms << src
 
-    GameType.all.each do |gm|
+    game_types.each do |gm|
       src = Array.new
       src << gm.game_type_name
       src << gm.id

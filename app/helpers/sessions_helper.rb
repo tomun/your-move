@@ -12,6 +12,10 @@ module SessionsHelper
     @game_types ||= GameType.game_types
   end
 
+  def other_players
+    Player.where("id <> ?", current_player.id)
+  end
+
   # def authentication_required
   #   unless signed_in?
   #     store_location

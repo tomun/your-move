@@ -2,6 +2,7 @@ require 'spec_helper'
 
 RSpec.describe SessionsHelper, type: :helper do
   let(:player) { create(:player) }
+  let(:other_player) { create(:player) }
 
   describe "#current_player" do
     it "stores a player if signed_in?" do
@@ -33,5 +34,18 @@ RSpec.describe SessionsHelper, type: :helper do
       expect(game_names).to include "TicTacToe"
     end
   end
+
+  # TODO doesn't work because mocks don't add to actual database, so other_players query returns nil
+  # describe "other_players" do
+  #   it "returns a list of the other players" do
+  #     player_names = []
+
+  #     other_players.each { 
+  #       |other_player| player_names << other_player.handle 
+  #     }
+
+  #     expect(player_names).to include other_player.handle
+  #   end
+  # end
 
 end

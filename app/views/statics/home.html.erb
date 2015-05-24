@@ -8,4 +8,10 @@
       <li><%= game_type.create.friendly_name %></li>
     <% end %>
   </ul>
+  <h2>The other players are</h2>
+  <ul>
+    <% other_players.each do |other_player| %>
+      <li><%= other_player.handle %></li>
+    <% end %>
+  </ul>
 <% end %>
