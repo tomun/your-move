@@ -20,7 +20,8 @@ module InvitationHelper
       puts "Whoa!"
     else
       @invite = Invitation.new
-      @invite.initiating_player = session[:player_id]
+      @invite.link_hash = create_hash
+      @invite.player_id = session[:player_id]
       @invite.recipient_player = @opponent.id
       @invite.game_type_id = game
       @invite.was_random_match = @random_match
@@ -29,6 +30,13 @@ module InvitationHelper
     end
 
     @invite
+  end
+
+  def create_hash
+    loop do
+      new_hash = rand(36**10).to_s(36)
+      break new_hash unless Invitation.exists?(link_hash: new_hash)
+    end
   end
 
 end

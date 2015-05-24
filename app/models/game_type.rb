@@ -14,27 +14,35 @@ class GameType < ActiveRecord::Base
   end
 
   def self.register_games
-    games = [ TicTacToe ]
+    games_classes = [ TicTacToe ]
     game_types = []
 
-    games.each do |game|
-      game_type = GameType.find_by game_type_name:game.name
+    games_classes.each do |game_class|
+      game_type = GameType.find_by class_name:game_class.name
 
       if game_type == nil
-        game_type = GameType.new game_type_name: game.name
+        game_type = GameType.new class_name: game_class.name, game_type_name: game_class.new.game_type_name
         game_type.save
       end
 
       game_types << game_type
     end
-    
+
     @@game_types = game_types
 
     @@game_types
   end
+    
+  # def self.game_types
+  #   @game_types = Array.new
+  #   GameType.all.each do |gt|
+  #     @game_types << gt
+  #   end
+  #   @game_types
+  # end
 
   def klass
-    game_type_name.constantize
+    class_name.constantize
   end
 
   def create
