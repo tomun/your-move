@@ -11,9 +11,9 @@ player_list.each do |handle, email, password|
 end
 
 game_types_list = [
-  ['Tic-Tac-Toe', '']
+  ['Tic-Tac-Toe', 'TicTacToe']
 ]
 
-game_types_list.each do |name, placeholder|
-  GameType.create(game_type_name: name)
+game_types_list.each do |name, cname|
+  GameType.create(game_type_name: name, class_name: cname)
 end
