@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GameType do
+describe GameType, type: :model do
 
   it "can register the games" do
     game_types = GameType.register_games

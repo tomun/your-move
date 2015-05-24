@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :players, only: [:new, :create]
   resources :invitations
+  resources :games
 
 end
