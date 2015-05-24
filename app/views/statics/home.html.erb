@@ -5,7 +5,7 @@
   <h2>The following games are available to play<h2>
   <ul>
     <% game_types.each do |game_type| %>
-      <li><%= game_type.create.friendly_name %></li>
+      <li><%= game_type.game_type_name %></li>
     <% end %>
   </ul>
   <h2>The other players are</h2>

@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   belongs_to :game_type
 
   def name
-    game_obj.friendly_name
+    game_obj.game_type_name
   end
 
   def game_obj

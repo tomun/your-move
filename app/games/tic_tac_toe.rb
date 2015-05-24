@@ -2,8 +2,8 @@ require_relative "game_base"
 require "json"
 
 class TicTacToe < GameBase
-  def friendly_name
-    "Tic Tac Toe"
+  def game_type_name
+    "Tic-Tac-Toe"
   end
 
   def initialize(board = nil, current_player = 1)

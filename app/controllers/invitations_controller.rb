@@ -14,9 +14,10 @@ class InvitationsController < ApplicationController
       redirect_to new_invitation_path
     else
       if @invite.save
-        puts "Success!"
+        InvitationMailer.send_invitation(@invite).deliver_now
+        redirect_to root_url, notice: "Your invitation has been sent!"
       else
-        puts "Failure!"
+        render "new"
       end
 
     end

@@ -8,16 +8,14 @@ describe GameType, type: :model do
     game_names = []
     game_types.each { |game_type| game_names << game_type.game_type_name }
 
-    expect(game_names).to include "TicTacToe"
+    expect(game_names).to include "Tic-Tac-Toe"
   end
 
   it "can return all registered games" do
     game_types = GameType.game_types
-
-    game_names = []
-    game_types.each { |game_type| game_names << game_type.game_type_name }
-
-    expect(game_names).to include "TicTacToe"
+    game_names = Array.new
+    game_types.each { |gt| game_names << gt.game_type_name }
+    expect(game_names).to include "Tic-Tac-Toe"
   end
 
   it "can create a Game object" do
@@ -25,7 +23,7 @@ describe GameType, type: :model do
 
     game = game_types[0].create
 
-    expect(game.friendly_name).to eq "Tic Tac Toe"
+    expect(game.game_type_name).to eq "Tic-Tac-Toe"
   end
 
 end
