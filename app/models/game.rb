@@ -26,4 +26,9 @@ class Game < ActiveRecord::Base
     game_obj.move params
   end
   
+  # a little hack to allow game creation in the game index page
+  def default_game_type
+    GameType.game_types.first
+  end
+
 end
