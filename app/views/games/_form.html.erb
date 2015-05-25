@@ -15,6 +15,14 @@
     <%= f.label :game_type_id %><br/>
     <%= f.text_field :game_type_id, value: @game.default_game_type.id %><br/>
   </div>
+  <div class="field">
+    <%= f.label :player_1_id %><br/>
+    <%= f.text_field :player_1_id, value: @game.default_player_1.id %><br/>
+  </div>
+  <div class="field">
+    <%= f.label :player_2_id %><br/>
+    <%= f.text_field :player_2_id, value: @game.default_player_2.id %><br/>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

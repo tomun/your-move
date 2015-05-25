@@ -35,7 +35,7 @@ class TicTacToe < GameBase
   end
 
   def board_html game_id
-    html = "<table>"
+    html = "<table style='board'>"
     @board.each_with_index do |row, rowix|
       html << "<tr>"
       row.each_with_index do |col, colix|

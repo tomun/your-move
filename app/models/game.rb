@@ -30,5 +30,11 @@ class Game < ActiveRecord::Base
   def default_game_type
     GameType.game_types.first
   end
+  def default_player_1
+    Player.first
+  end
+  def default_player_2
+    Player.second
+  end
 
 end
