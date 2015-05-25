@@ -7,9 +7,11 @@ module InvitationHelper
 
   def prepare_invite(name, game)
     if name.blank?
-      #TODO match a player based on the game, with a preference
-      # for a player not already in that game
-
+      loop do
+        offset = rand(Player.count)
+        @opponent = Player.offset(offset).first
+        break @opponent unless @opponent.id == session[:player_id]
+      end
       @random_match = true
     else
       @opponent = Player.where("lower(handle) = ?", name.downcase).first
