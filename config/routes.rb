@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboards#index', as: :dashboard
   get 'home' => 'dashboards#home', as: :home
 
-  get 'respond' => 'invitations#respond', as: :respond
+  post 'respond/:answer/:link_hash' => 'invitations#respond', as: :respond
 
   resources :players, only: [:new, :create]
   resources :invitations

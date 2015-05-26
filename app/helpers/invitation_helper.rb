@@ -39,4 +39,23 @@ module InvitationHelper
     end
   end
 
+  def get_invitation_by_hash(hash)
+    Invitation.where("link_hash = ?", hash).first
+  end
+
+  def set_player_order(player_1, player_2)
+    result = Array.new
+
+    first = rand(1..2)
+    if first == 1
+      array << player_1
+      array << player_2
+    else
+      array << player_2
+      array << player_1
+    end
+
+    result
+  end
+
 end

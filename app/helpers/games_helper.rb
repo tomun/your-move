@@ -1,6 +1,6 @@
 module GamesHelper
 
-  def opponent_handle(player_id: 0, game_id: 0)
+  def opponent_handle(player_id, game_id)
     g = Game.find(game_id)
     return nil unless g
 
@@ -14,4 +14,5 @@ module GamesHelper
 
     result
   end
+
 end
