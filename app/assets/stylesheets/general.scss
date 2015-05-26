@@ -187,24 +187,29 @@ section {
   border: solid 1px $border-color;
 }
 
+// Tic-Tac-Toe styles
 
-.square{
-    width:100px;
-    height:100px;
-    text-align: center;
-    font-size: 80px;
-    padding:0;
-    font-family: Sans-serif;
+.board {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-.v{
-    border-left:1px solid #000;
-    border-right:1px solid #000;
+.square {
+  width:100px;
+  height:100px;
+  text-align: center;
+  font-size: 80px;
+  font-family: Sans-serif;
 }
 
-.h{
-    border-top:1px solid #000;
-    border-bottom:1px solid #000;
+.v {
+  border-left:6px solid #000;
+  border-right:6px solid #000;
+}
+
+.h {
+  border-top:6px solid #000;
+  border-bottom:6px solid #000;
 }
 
 .instructions {
@@ -214,8 +219,8 @@ section {
 }
 
 td a {
-    display:block;
-    width:100%;
-    height:100%;
+  display:block;
+  width:100%;
+  height:100%;
 }
 

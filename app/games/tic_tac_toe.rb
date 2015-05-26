@@ -1,12 +1,18 @@
 require_relative "game_base"
 require "json"
 
+class Array
+  def same_values?
+    self.uniq.length == 1
+  end
+end
+
 class TicTacToe < GameBase
   def game_type_name
     "Tic-Tac-Toe"
   end
 
-  def initialize(board = nil, current_player = 1)
+  def initialize(board = nil, moving_player = 1)
     if board
       @board = board
     else
@@ -16,36 +22,39 @@ class TicTacToe < GameBase
         [nil, nil, nil]
       ]
     end
-    if current_player
-      @current_player = current_player
+    if moving_player
+      @moving_player = moving_player
     else
-      @current_player = 1
+      @moving_player = 1
     end
   end
 
   def to_json(*a)
     {
       "json_class" => self.class.name,
-      "data"       => {"board" => @board, "current_player" => @current_player}
+      "data"       => {"board" => @board, "moving_player" => @moving_player}
     }.to_json(*a)
   end
 
   def self.json_create(o)
-    new(o["data"]["board"], o["data"]["current_player"])
+    new(o["data"]["board"], o["data"]["moving_player"])
   end
 
-  def board_html game_id
-    html = "<table>"
+  def board_html game_id, player_no
+    html = "<table style='board'>"
     @board.each_with_index do |row, rowix|
       html << "<tr>"
       row.each_with_index do |col, colix|
-        hv = (rowix == 1 ? "h " : " ") + (colix == 1 ? "v" : "")
+        hv = (rowix == 1 ? " h" : " ") + (colix == 1 ? " v" : "")
 
-        html << "<td class='square #{hv}'>"
+        html << "<td class='square#{hv}'>"
 
         if col == nil
-          move_uri = "/games/" + game_id + '/move?row=' + rowix.to_s + '&col=' + colix.to_s
-          html << "<a href=\"#{move_uri}\"></a>"
+          if player_no == moving_player
+            html << "<a href='/games/#{game_id}/move?row=#{rowix}&col=#{colix}'></a>"
+          else
+            html << "&nbsp;"
+          end
         else
           html << (col == 1 ? "X" : "O")
         end
@@ -61,25 +70,75 @@ class TicTacToe < GameBase
     rowix = params[:row].to_i
     colix = params[:col].to_i
 
-    @board[rowix][colix] = @current_player
+    if @board[rowix][colix] == nil
+      @board[rowix][colix] = @moving_player
 
-    if @current_player == 1
-      @current_player = 2
-    else
-      @current_player = 1
+      if game_over?
+        @moving_player = 0
+      else
+        if @moving_player == 1
+          @moving_player = 2
+        else
+          @moving_player = 1
+        end
+      end
     end
   end
 
-  def current_player
-    @current_player
+  def moving_player
+    @moving_player
   end
 
   def game_over?
-    !(@board.flatten.include?(nil))
+    winning_player > 0 || !(@board.flatten.include?(nil))
   end
 
-  def winner
-    #TODO
+  def winning_player
+    # horizontal checks
+    for rowix in 0..2
+      if @board[rowix].same_values?
+        if @board[rowix][0]
+          return @board[rowix][0]
+        end
+      end
+    end
+
+    # vertical checks
+    for colix in 0..2
+      col = []
+      for rowix in 0..2
+        col << @board[rowix][colix]
+      end
+      if col.same_values?
+        if col[0]
+          return col[0]
+        end
+      end
+    end
+
+    # diagonal left-top to bottom
+    row = []
+    for i in 0..2
+      row << @board[i][i]
+    end
+    if row.same_values?
+      if row[0]
+        return row[0]
+      end
+    end
+
+    # diagonal right-top to bottom
+    row = []
+    for i in 0..2
+      row << @board[2 - i][i]
+    end
+    if row.same_values?
+      if row[0]
+        return row[0]
+      end
+    end
+
+    return 0
   end
 
 end
