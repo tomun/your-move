@@ -52,5 +52,24 @@
   <p>None.</p>
 <% end %>
 
-<h3>Your current games</h3>
+<header>Current games</header>
+<% if @your_games.any? %>
+  <table class="presentation">
+    <tr>
+      <th>Game</th>
+      <th>Opponent</th>
+      <th>Date started</th>
+    </tr>
+    <% @your_games.each do |g| %>
+    <tr>
+      <td><%= g.name %></td>
+      <td><%= GamesHelper::opponent_handle(player_id: session[:player_id], game_id: g.id) %></td>
+      <td><%= g.game_started.strftime("%B %e, %Y") %></td>
+    </tr>
+    <%end %>
+  </table>
+<% else %>
+  <p>None.</p>
+<% end %>
+
 
