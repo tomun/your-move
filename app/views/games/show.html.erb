@@ -1,4 +1,18 @@
-<h1><%= @game.name %></h1>
+<h1><%= @game.name %>: <%= @game.player_1.handle %> versus <%= @game.player_2.handle %></h1>
 
-<%= @game.board_html.html_safe %>
+<% if signed_in? %>
+  <h2>Welcome <%= current_player.handle %></h2>
+<% end %>
+
+<% if @game.moving_player %>
+  <h2>It&apos;s <%= @game.moving_player.handle %>&apos;s turn</h2>
+<% else %>
+  <% if @game.winning_player %>
+    <h2><%= @game.winning_player.handle %> is the winner!</h2>
+  <% else %>
+    <h2>The game is a draw!</h2>
+  <% end %>
+<% end %>
+
+<%= @game.board_html(current_player).html_safe %>
 
