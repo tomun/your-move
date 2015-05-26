@@ -1,0 +1,56 @@
+<h1>Welcome <%= current_player.handle %></h1>
+
+<header>Invitations you have received</header>
+<% if @invites_to_you.any? %>
+  <table class="presentation">
+    <tr>
+      <th>Game</th>
+      <th>Sent from</th>
+      <th>Random?</th>
+      <th>Date sent</th>
+      <th>Expires</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @invites_to_you.each do |i| %>
+    <tr>
+      <td><%= i.game_name %></td>
+      <td><%= i.issuer_handle %></td>
+      <td><%= i.was_random_match.yesno %></td>
+      <td><%= i.challenge_issued.strftime("%B %e, %Y") %></td>
+      <td><%= i.challenge_expires.strftime("%B %e, %Y %l:%M %P") %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <%end %>
+  </table>
+<% else %>
+  <p>None.</p>
+<% end %>
+
+<header>Invitations you have sent</header>
+<% if @invites_from_you.any? %>
+  <table class="presentation">
+    <tr>
+      <th>Game</th>
+      <th>Sent to</th>
+      <th>Random?</th>
+      <th>Date sent</th>
+      <th>Expires</th>
+    </tr>
+    <% @invites_from_you.each do |i| %>
+    <tr>
+      <td><%= i.game_name %></td>
+      <td><%= i.recipient_handle %></td>
+      <td><%= i.was_random_match.yesno %></td>
+      <td><%= i.challenge_issued.strftime("%B %e, %Y") %></td>
+      <td><%= i.challenge_expires.strftime("%B %e, %Y %l:%M %P") %></td>
+    </tr>
+    <%end %>
+  </table>
+<% else %>
+  <p>None.</p>
+<% end %>
+
+<h3>Your current games</h3>
+

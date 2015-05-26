@@ -19,9 +19,11 @@ class InvitationsController < ApplicationController
       else
         render "new"
       end
-
     end
+  end
 
+  def respond
+    
   end
 
 private
