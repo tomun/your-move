@@ -12,4 +12,6 @@ class Invitation < ActiveRecord::Base
   def recipient_handle
     Player.find(recipient_player).handle
   end
+
+
 end
