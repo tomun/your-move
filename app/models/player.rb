@@ -16,4 +16,11 @@ class Player < ActiveRecord::Base
     invites = Invitation.where("recipient_player = ?", id)
     invites
   end
+
+  #Not sure how to do this: I want to link a player
+  #to a game if they are player_1 or player 2
+  def current_games
+    games = Game.where("player_1_id = ? OR player_2_id = ?", id, id)
+  end
+
 end
