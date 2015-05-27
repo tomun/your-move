@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe PlayersController, type: :controller do
-  include ActiveJob::TestHelper
 
   let(:player) { create(:player) }
   let(:attributes) { attributes_for :player }

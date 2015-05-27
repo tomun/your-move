@@ -24,6 +24,6 @@ $(document).ready(function(){
     $(this).next('#access-content').slideToggle();
     $(this).toggleClass('active');
     return false;
-  })
+  });
   
 });

@@ -21,12 +21,12 @@ class GamesController < ApplicationController
   end
 
   # PATCH/PUT /games/1
-  def update
-  end
+  # def update
+  # end
 
   # GET /games/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # DELETE /games/1
   def destroy
