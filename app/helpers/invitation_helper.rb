@@ -48,11 +48,11 @@ module InvitationHelper
 
     first = rand(1..2)
     if first == 1
-      array << player_1
-      array << player_2
+      result << player_1
+      result << player_2
     else
-      array << player_2
-      array << player_1
+      result << player_2
+      result << player_1
     end
 
     result

@@ -1,0 +1,12 @@
+<p><b>Challenge accepted!</b></p>
+
+<p>Your invitation to <%= @invitee.handle %>
+to play <%= @game_type.game_type_name %>, made
+<%=@invitation.challenge_issued.strftime("%B %e, %Y") %>,
+has been accepted!<% if @is_first %>
+You have been selected to go first, so go to
+<a href="<%= t(:domain) %>">Your-Turn</a> and start playing!<% else %>
+Your opponent has been selected to go first; once their move has been
+made, you will be notified that it is your turn.<% end %></p>
+
+<p>The Your-Turn team.</p>

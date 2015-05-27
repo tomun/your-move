@@ -1,4 +1,5 @@
 require "json"
+include GamesHelper
 
 class Game < ActiveRecord::Base
   belongs_to :game_type
@@ -26,6 +27,7 @@ class Game < ActiveRecord::Base
     game_obj.move params
   end
   
+  #Now obsolete?
   # a little hack to allow game creation in the game index page
   def default_game_type
     GameType.game_types.first
