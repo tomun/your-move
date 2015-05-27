@@ -5,7 +5,7 @@ RSpec.describe SessionsController, type: :controller do
                             password_confirmation: "Password")
   }
 
-  # no new vieews/sessions/new.html.erb exists yet 
+  # no views/sessions/new.html.erb exists yet 
   # describe "#new" do
   #   it "is successful" do
   #     get :new
