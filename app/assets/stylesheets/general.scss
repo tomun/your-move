@@ -106,6 +106,13 @@ table.presentation th {
   background-color: $shade-color;
 }
 
+td.not_your_turn {
+  background-color: #EEEEEE;
+}
+
+td.your_turn {
+  background-color: #A9E9A9;
+}
 
 .alert-failure {
   color:#770000;
