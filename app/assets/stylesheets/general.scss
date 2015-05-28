@@ -99,19 +99,23 @@ table.presentation td,
 table.presentation th {
   text-align: left;
   padding: 0.25em 1.25em 0.25em 0.25em;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 table.presentation th {
   background-color: $shade-color;
 }
 
+table.presentation td form {
+  margin:0;
+}
+
 td.not_your_turn {
-  background-color: #EEEEEE;
+  background-color: #FFFFFF;
 }
 
 td.your_turn {
-  background-color: #A9E9A9;
+  background-color: #EEFFEE;
 }
 
 .alert-failure {

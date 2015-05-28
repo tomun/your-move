@@ -61,7 +61,7 @@ class GamesController < ApplicationController
   end
 
   def process(id)
-    redirect_to play_game_path
+    render "play"
   end
 
 private
