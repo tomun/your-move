@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 RSpec.describe GamesHelper, type: :helper do
 
   let(:game) { create(:game) }
@@ -24,4 +23,5 @@ RSpec.describe GamesHelper, type: :helper do
       expect(your_turn?(game.id, game.player_1.id)).to be_truthy
     end
   end
+  
 end
