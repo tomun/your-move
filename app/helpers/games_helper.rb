@@ -1,3 +1,5 @@
+include PlayersHelper
+
 module GamesHelper
 
   def opponent_handle(player_id, game_id)
