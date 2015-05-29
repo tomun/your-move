@@ -1,4 +1,5 @@
 require "json"
+include GamesHelper
 
 class Game < ActiveRecord::Base
   belongs_to :game_type

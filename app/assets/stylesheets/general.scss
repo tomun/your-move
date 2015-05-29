@@ -1,6 +1,7 @@
 $border-color: #004400;
 $hover-color: #00CC00;
 $solid-color: #009933;
+$shade-color: #A9E9A9;
 
 footer, header, nav {
   padding: 10px;
@@ -34,6 +35,9 @@ footer {
  }
   
 header {
+  font-weight: bold;
+  font-style: italic;
+  padding:0;
  }
 
 nav {
@@ -85,6 +89,34 @@ section {
     margin:0;
 }
 
+table.presentation {
+  border: solid 1px $border-color;
+  border-collapse: collapse;
+  margin: 0.25em 0 1em 0;
+}
+
+table.presentation td, 
+table.presentation th {
+  text-align: left;
+  padding: 0.25em 1.25em 0.25em 0.25em;
+  vertical-align: middle;
+}
+
+table.presentation th {
+  background-color: $shade-color;
+}
+
+table.presentation td form {
+  margin:0;
+}
+
+td.not_your_turn {
+  background-color: #FFFFFF;
+}
+
+td.your_turn {
+  background-color: #EEFFEE;
+}
 
 .alert-failure {
   color:#770000;

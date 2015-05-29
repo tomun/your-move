@@ -1,0 +1,87 @@
+<h1>Welcome <%= current_player.handle %></h1>
+
+<header>Invitations you have received</header>
+<% if @invites_to_you.any? %>
+  <table class="presentation">
+    <tr>
+      <th>Game</th>
+      <th>Sent from</th>
+      <th>Random?</th>
+      <th>Date sent</th>
+      <th>Expires</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @invites_to_you.each do |i| %>
+    <tr>
+      <td><%= i.game_name %></td>
+      <td><%= i.issuer_handle %></td>
+      <td><%= i.was_random_match.yesno %></td>
+      <td><%= i.challenge_issued.strftime("%B %e, %Y") %></td>
+      <td><%= i.challenge_expires.strftime("%B %e, %Y %l:%M %P") %></td>
+      <td><%= button_to "Accept", respond_path("y", i.link_hash), data: {confirm: "Would you like to accept this invitation?"} %></td>
+      <td><%= button_to "Reject", respond_path("n", i.link_hash), data: {confirm: "You want to turn down this invitation?"} %></td>
+    </tr>
+    <%end %>
+  </table>
+<% else %>
+  <p>None.</p>
+<% end %>
+
+<header>Invitations you have sent</header>
+<% if @invites_from_you.any? %>
+  <table class="presentation">
+    <tr>
+      <th>Game</th>
+      <th>Sent to</th>
+      <th>Random?</th>
+      <th>Date sent</th>
+      <th>Expires</th>
+      <th></th>
+    </tr>
+    <% @invites_from_you.each do |i| %>
+    <tr>
+      <td><%= i.game_name %></td>
+      <td><%= i.recipient_handle %></td>
+      <td><%= i.was_random_match.yesno %></td>
+      <td><%= i.challenge_issued.strftime("%B %e, %Y") %></td>
+      <td><%= i.challenge_expires.strftime("%B %e, %Y %l:%M %P") %></td>
+      <td><%= button_to "Withdraw", withdraw_path(i.link_hash), data: {confirm: "You want to withdraw this invitation?"} %></td>
+    </tr>
+    <%end %>
+  </table>
+<% else %>
+  <p>None.</p>
+<% end %>
+
+<header>Current games</header>
+<% if @your_games.any? %>
+  <table class="presentation">
+    <tr>
+      <th>Game</th>
+      <th>Opponent</th>
+      <th>Whose turn</th>
+      <th>Date started</th>
+      <th></th>
+    </tr>
+    <% @your_games.each do |g| 
+        cell_class = turn_class(g.id, session[:player_id])
+        if your_turn?(g.id, session[:player_id])
+          @button_text = "Take your turn"
+        else
+          @button_text = "View the game"
+        end %>
+    <tr>
+      <td class='<%= cell_class %>'><%= g.name %></td>
+      <td class='<%= cell_class %>'><%= opponent_handle(session[:player_id], g.id) %></td>
+      <td class='<%= cell_class %>'><%= your_turn?(g.id, session[:player_id])?"Yours":"Opponent's" %></td>
+      <td class='<%= cell_class %>'><%= g.game_started.strftime("%B %e, %Y") %></td>
+      <td class='<%= cell_class %>'><%= button_to @button_text, play_game_path(g.id) %></td>
+    </tr>
+    <%end %>
+  </table>
+<% else %>
+  <p>None.</p>
+<% end %>
+
+
