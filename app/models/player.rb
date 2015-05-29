@@ -9,11 +9,17 @@ class Player < ActiveRecord::Base
   end
 
   def invites_from_player
-    invitations
+    invites = Invitation.where("player_id = ? AND challenge_expires > datetime('now') AND challenge_responded IS NULL AND was_withdrawn IS NULL", id)
+    invites
   end
 
   def invites_to_player
-    invites = Invitation.where("recipient_player = ?", id)
+    invites = Invitation.where("recipient_player = ? AND challenge_expires > datetime('now') AND challenge_responded IS NULL AND was_withdrawn IS NULL", id)
     invites
   end
+
+  def current_games
+    games = Game.where("(player_1_id = ? OR player_2_id = ?) AND game_ended IS NULL", id, id)
+  end
+
 end

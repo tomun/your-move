@@ -1,4 +1,5 @@
 require "json"
+include GamesHelper
 
 class Game < ActiveRecord::Base
   belongs_to :game_type
@@ -63,6 +64,14 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def whose_turn
+    game_obj.moving_player
+  end
+
+  def game_started
+    created_at
+  end
+    
   # a little hack to allow game creation in the game index page
   def default_game_type
     GameType.game_types.first

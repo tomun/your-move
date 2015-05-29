@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if player && params[:login_password].present? && player.authenticate(params[:login_password])
       session[:player_id] = player.id
-      redirect_to root_path, notice: "You have been logged in."
+      redirect_to dashboard_path
     else
       flash[:error] = "Your username or password are incorrect. Please try again."
       redirect_to root_path

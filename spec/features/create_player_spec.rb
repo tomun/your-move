@@ -16,8 +16,8 @@ describe "creating a player" do
       expect(page).to have_content "You have signed up"
     end
 
-    it "sends them home" do
-      expect(current_path).to eq "/"
+    it "sends them to their dashboard" do
+      expect(current_path).to eq "/dashboard"
     end
   end
 
