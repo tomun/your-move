@@ -1,3 +1,5 @@
+include PlayersHelper
+
 module GamesHelper
 
   def opponent_handle(player_id, game_id)
@@ -17,7 +19,11 @@ module GamesHelper
 
   def whose_turn(game_id)
     g = Game.find(game_id)
-    g.public_send("player_#{g.whose_turn}_id")
+    if g.whose_turn > 0
+      g.public_send("player_#{g.whose_turn}_id")
+    else
+      -1
+    end
   end
 
   def your_turn?(game_id, player_id)

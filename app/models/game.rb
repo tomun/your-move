@@ -3,6 +3,8 @@ include GamesHelper
 
 class Game < ActiveRecord::Base
   belongs_to :game_type
+  belongs_to :player_1, :class_name => 'Player'
+  belongs_to :player_2, :class_name => 'Player'
 
   def name
     game_obj.game_type_name
@@ -36,14 +38,6 @@ class Game < ActiveRecord::Base
     game_obj.move params
   end
   
-  def player_1
-    Player.find(player_1_id)
-  end
-
-  def player_2
-    Player.find(player_2_id)
-  end
-
   def moving_player
     if game_obj.moving_player == 1
       player_1

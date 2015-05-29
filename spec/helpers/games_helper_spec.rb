@@ -1,15 +1,27 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the GamesHelper. For example:
-#
-# describe GamesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe GamesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:game) { create(:game) }
+
+  describe "#opponent_handle" do
+    it "returns the handle of a players opponent for a given game" do
+      handle = opponent_handle(game.player_1.id, game.id)
+      expect(handle).to eq(game.player_2.handle)
+    end
+  end
+
+  describe "#whose_turn" do
+    it "returns the id of the player whose turn it is for a given game" do
+      player_id = whose_turn(game.id)
+      expect(player_id).to eq(game.player_1.id)
+    end
+  end
+
+  describe "#your_turn?" do
+    it "returns true if the given player id's turn is up for a given game id" do
+      expect(your_turn?(game.id, game.player_1.id)).to be_truthy
+    end
+  end
+  
 end
