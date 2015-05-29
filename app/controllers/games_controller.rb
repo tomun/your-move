@@ -44,7 +44,7 @@ class GamesController < ApplicationController
   # GET /games/1
   def show
     #Process the game board for display
-    redirect_to game_path
+    #redirect_to game_path
   end
 
   # GET /games/1/move
@@ -59,12 +59,12 @@ class GamesController < ApplicationController
     render "show"
   end
 
-  def play
-  end
+  # def play
+  # end
 
-  def process(id)
-    render "play"
-  end
+  # def process(id)
+  #   render "play"
+  # end
 
 private
   # Use callbacks to share common setup or constraints between actions.
