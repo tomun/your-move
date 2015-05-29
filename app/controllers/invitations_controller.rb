@@ -46,7 +46,7 @@ class InvitationsController < ApplicationController
 #TODO initialize the record with starting game data
 #          @game.game_data = whatever
           if @game.save
-            InvitationMailer.accept_invitation(@invite, (@game.player_1_id == session[:player_id])).deliver_now
+            InvitationMailer.accept_invitation(@invite, (@game.player_2_id == session[:player_id])).deliver_now
             redirect_to dashboard_path, notice: "You have accepted the invitation."
           end
         end
