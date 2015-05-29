@@ -74,7 +74,7 @@
     <tr>
       <td class='<%= cell_class %>'><%= g.name %></td>
       <td class='<%= cell_class %>'><%= opponent_handle(session[:player_id], g.id) %></td>
-      <td class='<%= cell_class %>'><%= your_turn?(g.id, session[:player_id]?"Yours":"Opponent's") %></td>
+      <td class='<%= cell_class %>'><%= your_turn?(g.id, session[:player_id])?"Yours":"Opponent's" %></td>
       <td class='<%= cell_class %>'><%= g.game_started.strftime("%B %e, %Y") %></td>
       <td class='<%= cell_class %>'><%= button_to @button_text, play_game_path(g.id) %></td>
     </tr>
