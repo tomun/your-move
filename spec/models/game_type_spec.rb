@@ -26,4 +26,12 @@ describe GameType, type: :model do
     expect(game.game_type_name).to eq "Tic-Tac-Toe"
   end
 
+  context "#self.options_all" do
+    it "returns a two dimensional array of game type names and game type ids" do
+      options = GameType.options_all
+
+      expect(options).to include(["Tic-Tac-Toe", 1])
+    end
+  end
+
 end
