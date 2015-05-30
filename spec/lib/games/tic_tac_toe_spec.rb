@@ -84,8 +84,13 @@ describe TicTacToe do
       expect(@game.moving_player).to eq(2)
     end
 
-    it "should be 0 when the game is over" do
+    it "should be 0 when the game is over due to a win" do
       make_moves_to_player_1_win
+      expect(@game.moving_player).to eq(0)
+    end
+
+    it "should be 0 when the game is over due to a draw" do
+      make_moves_to_a_draw
       expect(@game.moving_player).to eq(0)
     end
   end
