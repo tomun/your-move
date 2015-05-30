@@ -1,4 +1,4 @@
-require_relative "../games/tic_tac_toe"
+require "games/tic_tac_toe"
 
 class GameType < ActiveRecord::Base
   has_many :games
@@ -33,14 +33,6 @@ class GameType < ActiveRecord::Base
     @@game_types
   end
     
-  # def self.game_types
-  #   @game_types = Array.new
-  #   GameType.all.each do |gt|
-  #     @game_types << gt
-  #   end
-  #   @game_types
-  # end
-
   def klass
     class_name.constantize
   end

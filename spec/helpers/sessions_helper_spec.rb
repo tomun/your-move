@@ -36,17 +36,4 @@ RSpec.describe SessionsHelper, type: :helper do
     end
   end
 
-  # TODO doesn't work because mocks don't add to actual database, so other_players query returns nil
-  # describe "other_players" do
-  #   it "returns a list of the other players" do
-  #     player_names = []
-
-  #     other_players.each { 
-  #       |other_player| player_names << other_player.handle 
-  #     }
-
-  #     expect(player_names).to include other_player.handle
-  #   end
-  # end
-
 end

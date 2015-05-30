@@ -45,7 +45,7 @@ class TicTacToe < GameBase
     @board.each_with_index do |row, rowix|
       html << "<tr>"
       row.each_with_index do |col, colix|
-        hv = (rowix == 1 ? " h" : " ") + (colix == 1 ? " v" : "")
+        hv = (rowix == 1 ? " h" : "") + (colix == 1 ? " v" : "")
 
         html << "<td class='square#{hv}'>"
 
