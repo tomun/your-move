@@ -3,7 +3,7 @@ require "json"
 
 class Array
   def same_values?
-    self.uniq.length == 1
+    self.uniq.length == 1 && self.uniq != [nil]
   end
 end
 
@@ -96,11 +96,7 @@ class TicTacToe < GameBase
   def winning_player
     # horizontal checks
     for rowix in 0..2
-      if @board[rowix].same_values?
-        if @board[rowix][0]
-          return @board[rowix][0]
-        end
-      end
+      return @board[rowix][0] if @board[rowix].same_values?
     end
 
     # vertical checks
@@ -109,11 +105,7 @@ class TicTacToe < GameBase
       for rowix in 0..2
         col << @board[rowix][colix]
       end
-      if col.same_values?
-        if col[0]
-          return col[0]
-        end
-      end
+      return col[0] if col.same_values?
     end
 
     # diagonal left-top to bottom
@@ -121,24 +113,17 @@ class TicTacToe < GameBase
     for i in 0..2
       row << @board[i][i]
     end
-    if row.same_values?
-      if row[0]
-        return row[0]
-      end
-    end
+    return row[0] if row.same_values?
 
     # diagonal right-top to bottom
     row = []
     for i in 0..2
       row << @board[2 - i][i]
     end
-    if row.same_values?
-      if row[0]
-        return row[0]
-      end
-    end
+    return row[0] if row.same_values?
 
-    return 0
+    # no winner
+    0
   end
 
 end
