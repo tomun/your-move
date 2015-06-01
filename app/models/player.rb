@@ -10,12 +10,12 @@ class Player < ActiveRecord::Base
   end
 
   def invites_from_player
-    invites = Invitation.where("player_id = ? AND challenge_expires > current_timestamp AND challenge_responded IS NULL AND was_withdrawn IS NULL", id)
+    invites = Invitation.where("player_id = ? AND challenge_expires > datetime('now') AND challenge_responded IS NULL AND was_withdrawn IS NULL", id)
     invites
   end
 
   def invites_to_player
-    invites = Invitation.where("recipient_player = ? AND challenge_expires > current_timestamp AND challenge_responded IS NULL AND was_withdrawn IS NULL", id)
+    invites = Invitation.where("recipient_player = ? AND challenge_expires > datetime('now') AND challenge_responded IS NULL AND was_withdrawn IS NULL", id)
     invites
   end
 
