@@ -16,13 +16,13 @@ gem 'bcrypt-ruby'
 gem 'omniauth-twitter'
 gem 'twitter'
 
+gem 'pg'
+gem 'rails_12factor'
+
 group :production do
-  gem 'pg'
-  gem 'rails_12factor'
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'

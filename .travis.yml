@@ -6,3 +6,8 @@ bundler_args: "--without development"
 addons:
   code_climate:
     repo_token: 4d9c4f15ab5a31a9cfb77113dbd1b2bba8a94d3736d4bfa59a048ce3ebff7a33
+  postgresql: "9.4"
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml
