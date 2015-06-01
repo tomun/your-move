@@ -20,14 +20,6 @@ class GamesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /games/1
-  # def update
-  # end
-
-  # GET /games/1/edit
-  # def edit
-  # end
-
   # DELETE /games/1
   def destroy
     @game.destroy
@@ -43,28 +35,20 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
-    #Process the game board for display
-    #redirect_to game_path
+
   end
 
   # GET /games/1/move
   def move
     @game.move params
-
     @game.game_data = @game.game_obj.to_json
 
-    @game.save
+    if @game.save 
+      GameMailer.notify_turn(@game.id, @game.whose_turn, session[:player_id]).deliver_now
+      render "show"
+    end
 
-    #redirect_to game_path(self)
-    render "show"
   end
-
-  # def play
-  # end
-
-  # def process(id)
-  #   render "play"
-  # end
 
 private
   # Use callbacks to share common setup or constraints between actions.
