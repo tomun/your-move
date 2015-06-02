@@ -77,4 +77,28 @@ class Game < ActiveRecord::Base
     Player.second
   end
 
+  # notification
+  after_save :notify_game_change
+
+  def notify_game_change
+    self.class.connection.execute "NOTIFY #{channel}, #{self.class.connection.quote self.to_s}"
+  end
+
+  def on_game_change
+    self.class.connection.execute "LISTEN #{channel}"
+    loop do
+      self.class.connection.raw_connection.wait_for_notify do |event, pid, game|
+        puts "!!!!!!!!! NOTFICATION %%%%%%%%%%"
+        yield game
+      end
+    end
+  ensure
+    self.class.connection.execute "UNLISTEN #{channel}"
+  end
+
+  private
+  def channel
+    "games_#{id}"
+  end
+
 end

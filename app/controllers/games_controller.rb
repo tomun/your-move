@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   include SessionsHelper
+  include ActionController::Live
 
   before_action :set_game
 
@@ -66,10 +67,29 @@ class GamesController < ApplicationController
   #   render "play"
   # end
 
+  def sse_index
+    response.headers['Content-Type'] = 'text/event-stream'
+    @game.on_game_change do |game|
+      response.stream.write(sse({game: game}, {event: 'game'}))
+    end
+  rescue IOError
+    # Client Disconnected
+  ensure
+    response.stream.close
+  end
+
+  private
+  def sse(object, options = {})
+    (options.map{|k,v| "#{k}: #{v}" } << "data: #{JSON.dump object}").join("\n") + "\n\n"
+  end
+
 private
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     id = params[:id]
+    if id == nil
+      id = params[:game_id]
+    end
     if id != nil 
       @game = Game.find(id)
     end
