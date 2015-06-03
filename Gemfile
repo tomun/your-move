@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
+gem 'puma'
+
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 

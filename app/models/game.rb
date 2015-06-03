@@ -6,6 +6,8 @@ class Game < ActiveRecord::Base
   belongs_to :player_1, :class_name => 'Player'
   belongs_to :player_2, :class_name => 'Player'
 
+  after_save :notify_game_change
+
   def name
     game_obj.game_type_name
   end
@@ -75,6 +77,33 @@ class Game < ActiveRecord::Base
   end
   def default_player_2
     Player.second
+  end
+
+  # notifications
+
+  # called by Rails when the record is saved
+  def notify_game_change
+    connection.execute "NOTIFY #{channel}, #{connection.quote self.to_s}"
+  end
+
+  def on_game_change
+    connection.execute "LISTEN #{channel}"
+    loop do
+      connection.raw_connection.wait_for_notify do |event, pid, game|
+        yield game
+      end
+    end
+  ensure
+    connection.execute "UNLISTEN #{channel}"
+  end
+
+private
+  def connection
+    self.class.connection
+  end
+
+  def channel
+    "games_#{id}"
   end
 
 end

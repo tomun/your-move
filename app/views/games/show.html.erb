@@ -1,3 +1,9 @@
+<% if signed_in? %>
+  <%= javascript_tag do %>
+    window.itsYourTurn = <%= @game.moving_player == current_player %>;
+  <% end %>
+<% end %>
+
 <h1><%= @game.name %>: <%= @game.player_1.handle %> versus <%= @game.player_2.handle %></h1>
 
 <% if signed_in? %>
@@ -5,7 +11,11 @@
 <% end %>
 
 <% if @game.moving_player %>
-  <h2>It&apos;s <%= @game.moving_player.handle %>&apos;s turn</h2>
+  <% if signed_in? && @game.moving_player == current_player %>
+    <h2>It&apos;s your turn, <%= @game.moving_player.handle %></h2>
+  <% else %>    
+    <h2>It&apos;s <%= @game.moving_player.handle %>&apos;s turn</h2>
+  <% end %>
 <% else %>
   <% if @game.winning_player %>
     <h2><%= @game.winning_player.handle %> is the winner!</h2>

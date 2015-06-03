@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   include SessionsHelper
+  include ActionController::Live
 
   before_action :set_game
 
@@ -44,7 +45,7 @@ class GamesController < ApplicationController
     @game.game_data = @game.game_obj.to_json
 
     if @game.save 
-      if signed_in?
+      if signed_in? && @game.whose_turn > 0
         GameMailer.notify_turn(@game.id, @game.whose_turn, current_player).deliver_now
       end
       render "show"
@@ -52,10 +53,29 @@ class GamesController < ApplicationController
 
   end
 
+  # Server Side Event
+  def sse_index
+    response.headers['Content-Type'] = 'text/event-stream'
+    @game.on_game_change do |game|
+      response.stream.write(sse({game: game}, {event: 'refresh'}))
+    end
+  rescue IOError
+    # Client Disconnected
+  ensure
+    response.stream.close
+  end
+
 private
+  def sse(object, options = {})
+    (options.map{|k,v| "#{k}: #{v}" } << "data: #{JSON.dump object}").join("\n") + "\n\n"
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     id = params[:id]
+    if id == nil
+      id = params[:game_id]
+    end
     if id != nil 
       @game = Game.find(id)
     end
