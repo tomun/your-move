@@ -4,10 +4,14 @@
 
 $(document).ready(function() {
   setTimeout(function() {
-    var url = window.location.pathname + '/browser';
-    var source = new EventSource(url);
-    source.addEventListener('refresh', function(e) {
-      window.location.reload();
-    });
+    var pathArray = window.location.pathname.split( '/' );
+    if (pathArray[1] == 'games') {
+      url = '/games/' + pathArray[2] + '/notification';
+      var source = new EventSource(url);
+      source.addEventListener('refresh', function(e) {
+        source.close();
+        window.location.reload();
+      });
+    }
   }, 1);
 });

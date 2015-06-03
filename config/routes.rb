@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   resources :players, only: [:new, :create]
   resources :invitations
   resources :games do
+    get 'notification' => 'games#sse_index'
     member do
       get 'move' => 'games#move'
     end
-    get 'browser' => 'games#sse_index'
   end
 
 end

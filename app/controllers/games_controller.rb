@@ -21,14 +21,6 @@ class GamesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /games/1
-  # def update
-  # end
-
-  # GET /games/1/edit
-  # def edit
-  # end
-
   # DELETE /games/1
   def destroy
     @game.destroy
@@ -44,33 +36,28 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
-    #Process the game board for display
-    #redirect_to game_path
+
   end
 
   # GET /games/1/move
   def move
     @game.move params
-
     @game.game_data = @game.game_obj.to_json
 
-    @game.save
+    if @game.save 
+      if signed_in?
+        GameMailer.notify_turn(@game.id, @game.whose_turn, current_player).deliver_now
+      end
+      render "show"
+    end
 
-    #redirect_to game_path(self)
-    render "show"
   end
 
-  # def play
-  # end
-
-  # def process(id)
-  #   render "play"
-  # end
-
+  # Server Side Event
   def sse_index
     response.headers['Content-Type'] = 'text/event-stream'
     @game.on_game_change do |game|
-      response.stream.write(sse({game: game}, {event: 'game'}))
+      response.stream.write(sse({game: game}, {event: 'refresh'}))
     end
   rescue IOError
     # Client Disconnected
@@ -78,12 +65,11 @@ class GamesController < ApplicationController
     response.stream.close
   end
 
-  private
+private
   def sse(object, options = {})
     (options.map{|k,v| "#{k}: #{v}" } << "data: #{JSON.dump object}").join("\n") + "\n\n"
   end
 
-private
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     id = params[:id]
