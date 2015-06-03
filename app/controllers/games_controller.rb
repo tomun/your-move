@@ -45,7 +45,7 @@ class GamesController < ApplicationController
     @game.game_data = @game.game_obj.to_json
 
     if @game.save 
-      if signed_in?
+      if signed_in? && @game.whose_turn > 0
         GameMailer.notify_turn(@game.id, @game.whose_turn, current_player).deliver_now
       end
       render "show"

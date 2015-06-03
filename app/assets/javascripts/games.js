@@ -3,15 +3,17 @@
 //# You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function() {
-  setTimeout(function() {
-    var pathArray = window.location.pathname.split( '/' );
-    if (pathArray[1] == 'games') {
-      url = '/games/' + pathArray[2] + '/notification';
-      var source = new EventSource(url);
-      source.addEventListener('refresh', function(e) {
-        source.close();
-        window.location.reload();
-      });
-    }
-  }, 1);
+  if (!window.itsYourTurn) {
+    setTimeout(function() {
+      var pathArray = window.location.pathname.split( '/' );
+      if (pathArray[1] == 'games') {
+        url = '/games/' + pathArray[2] + '/notification';
+        var source = new EventSource(url);
+        source.addEventListener('refresh', function(e) {
+          source.close();
+          window.location.reload();
+        });
+      }
+    }, 1);
+  }
 });
