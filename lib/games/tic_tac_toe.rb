@@ -1,5 +1,6 @@
 require_relative "game_base"
 require "json"
+require "matrix"
 
 class Array
   def same_values?
@@ -94,36 +95,25 @@ class TicTacToe < GameBase
   end
 
   def winning_player
-    # horizontal checks
-    @board.each do |row|
-      return row[0] if row.same_values?
+    if win? 1
+      1
+    elsif win? 2
+      2
+    else
+      0
     end
+  end
 
-    # vertical checks
-    (0..2).each do |colix|
-      col = []
-      (0..2).each do |rowix|
-        col << @board[rowix][colix]
-      end
-      return col[0] if col.same_values?
-    end
+private
 
-    # diagonal left-top to bottom
-    row = []
-    (0..2).each do |i|
-      row << @board[i][i]
-    end
-    return row[0] if row.same_values?
-
-    # diagonal right-top to bottom
-    row = []
-    (0..2).each do |i|
-      row << @board[2 - i][i]
-    end
-    return row[0] if row.same_values?
-
-    # no winner
-    0
+  def win?(player)
+    n = @board.size
+    m = Matrix[*@board]
+    pvec = Matrix.build(1,n){player}.row(0)
+    m.row_vectors.any?      { |r| puts "r = #{r}"; r == pvec } ||
+      m.column_vectors.any? { |c| puts "c = #{c}"; c == pvec } ||
+      (m.each(:diagonal).to_a == pvec )                        ||
+      (0...n).all? { |i| @board[i][n-i-1] == player }
   end
 
 end
