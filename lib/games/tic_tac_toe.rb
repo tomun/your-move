@@ -106,13 +106,14 @@ class TicTacToe < GameBase
 
 private
 
-  def win?(player)
-    n = @board.size
-    m = Matrix[*@board]
-    pvec = Matrix.build(1,n){player}.row(0)
-    m.row_vectors.any?      { |r| r == pvec } ||
-      m.column_vectors.any? { |c| c == pvec } ||
-      (Vector.[](*m.each(:diagonal).to_a) == pvec )
+  def win?(p)
+    size = @board.size
+    matrix = Matrix[*@board]
+    vector = Matrix.build(1, size) { p }.row(0)
+    matrix.row_vectors.any? { |r| r == vector } ||
+      matrix.column_vectors.any? { |c| c == vector } ||
+      (Vector.[](*matrix.each(:diagonal).to_a) == vector) ||
+      (0...size).all? { |i| @board[i][size - i - 1] == p }
   end
 
 end
