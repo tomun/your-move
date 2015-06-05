@@ -100,9 +100,9 @@ class TicTacToe < GameBase
     end
 
     # vertical checks
-    0..2.each do |colix|
+    (0..2).each do |colix|
       col = []
-      0..2.each do |rowix|
+      (0..2).each do |rowix|
         col << @board[rowix][colix]
       end
       return col[0] if col.same_values?
@@ -110,14 +110,14 @@ class TicTacToe < GameBase
 
     # diagonal left-top to bottom
     row = []
-    0..2.each do |i|
+    (0..2).each do |i|
       row << @board[i][i]
     end
     return row[0] if row.same_values?
 
     # diagonal right-top to bottom
     row = []
-    0..2.each do |i|
+    (0..2).each do |i|
       row << @board[2 - i][i]
     end
     return row[0] if row.same_values?
