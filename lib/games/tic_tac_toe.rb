@@ -95,14 +95,14 @@ class TicTacToe < GameBase
 
   def winning_player
     # horizontal checks
-    for rowix in 0..2
-      return @board[rowix][0] if @board[rowix].same_values?
+    @board.each do |row|
+      return row[0] if row.same_values?
     end
 
     # vertical checks
-    for colix in 0..2
+    (0..2).each do |colix|
       col = []
-      for rowix in 0..2
+      (0..2).each do |rowix|
         col << @board[rowix][colix]
       end
       return col[0] if col.same_values?
@@ -110,14 +110,14 @@ class TicTacToe < GameBase
 
     # diagonal left-top to bottom
     row = []
-    for i in 0..2
+    (0..2).each do |i|
       row << @board[i][i]
     end
     return row[0] if row.same_values?
 
     # diagonal right-top to bottom
     row = []
-    for i in 0..2
+    (0..2).each do |i|
       row << @board[2 - i][i]
     end
     return row[0] if row.same_values?
