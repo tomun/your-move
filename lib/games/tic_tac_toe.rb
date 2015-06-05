@@ -112,8 +112,7 @@ private
     pvec = Matrix.build(1,n){player}.row(0)
     m.row_vectors.any?      { |r| puts "r = #{r}"; r == pvec } ||
       m.column_vectors.any? { |c| puts "c = #{c}"; c == pvec } ||
-      (m.each(:diagonal).to_a == pvec )                        ||
-      (0...n).all? { |i| @board[i][n-i-1] == player }
+      (Vector.[](*(m.each(:diagonal).to_a) == pvec )
   end
 
 end
