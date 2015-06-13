@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   include SessionsHelper
   include ActionController::Live
+  # include Tubesock::Hijack
 
   before_action :set_game
 
@@ -63,6 +64,7 @@ class GamesController < ApplicationController
     # Client Disconnected
   ensure
     response.stream.close
+    # ActiveRecord::Base.clear_active_connections!
   end
 
 private

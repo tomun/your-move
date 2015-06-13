@@ -5,7 +5,7 @@
 /*global EventSource */
 
 $(document).ready(function() {
-  if (!window.itsYourTurn) {
+  if (window.waitingForTurn) {
     setTimeout(function() {
       var pathArray = window.location.pathname.split( '/' );
       if (pathArray[1] === 'games') {

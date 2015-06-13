@@ -18,7 +18,7 @@ module InvitationHelper
       @random_match = false
     end
 
-    if @opponent.id.nil?
+    if @opponent == nil || @opponent.id.nil?
       puts "Whoa!"
     else
       @invite = Invitation.new

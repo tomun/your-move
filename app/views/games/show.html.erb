@@ -1,6 +1,6 @@
 <% if signed_in? %>
   <%= javascript_tag do %>
-    window.itsYourTurn = <%= @game.moving_player == current_player %>;
+    window.waitingForTurn = <%= @game.waiting_for_turn?(current_player) %>;
   <% end %>
 <% end %>
 

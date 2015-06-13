@@ -67,7 +67,19 @@ class Game < ActiveRecord::Base
   def game_started
     created_at
   end
-    
+  
+  def game_over?
+    game_obj.game_over?
+  end
+
+  def waiting_for_turn? current_player
+    if game_over?
+      false
+    else
+      !(moving_player == current_player)
+    end
+  end
+
   # a little hack to allow game creation in the game index page
   def default_game_type
     GameType.game_types.first
@@ -88,11 +100,11 @@ class Game < ActiveRecord::Base
 
   def on_game_change
     connection.execute "LISTEN #{channel}"
-    loop do
+    # loop do
       connection.raw_connection.wait_for_notify do |event, pid, game|
         yield game
       end
-    end
+    # end
   ensure
     connection.execute "UNLISTEN #{channel}"
   end
