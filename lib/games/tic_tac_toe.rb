@@ -2,9 +2,21 @@ require_relative "game_base"
 require "json"
 require "matrix"
 
-class Array
-  def same_values?
-    self.uniq.length == 1 && self.uniq != [nil]
+class Matrix
+  def row_vectors_any? vector
+    row_vectors.any? { |r| r == vector }
+  end
+
+  def column_vectors_any? vector
+    column_vectors.any? { |c| c == vector }
+  end
+
+  def diagonal_vectors_any? vector
+    Vector.[](*each(:diagonal).to_a) == vector
+  end
+
+  def minor_diagonal_vectors_any? vector
+    (0...row_size).all? { |i| to_a[i][row_size - i - 1] == vector[i] }
   end
 end
 
@@ -107,13 +119,9 @@ class TicTacToe < GameBase
 private
 
   def win?(p)
-    size = @board.size
     matrix = Matrix[*@board]
-    vector = Matrix.build(1, size) { p }.row(0)
-    matrix.row_vectors.any? { |r| r == vector } ||
-      matrix.column_vectors.any? { |c| c == vector } ||
-      (Vector.[](*matrix.each(:diagonal).to_a) == vector) ||
-      (0...size).all? { |i| @board[i][size - i - 1] == p }
+    vector = Matrix.build(1, @board.size) { p }.row(0)
+    matrix.row_vectors_any?(vector) || matrix.column_vectors_any?(vector) || matrix.diagonal_vectors_any?(vector) || matrix.minor_diagonal_vectors_any?(vector)
   end
 
 end
